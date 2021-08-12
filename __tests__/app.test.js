@@ -8,55 +8,116 @@ const client = require('../lib/client');
 
 describe('app routes', () => {
   describe('routes', () => {
-    let token;
+    // let token;
   
     beforeAll(async () => {
       execSync('npm run setup-db');
   
-      await client.connect();
-      const signInData = await fakeRequest(app)
-        .post('/auth/signup')
-        .send({
-          email: 'jon@user.com',
-          password: '1234'
-        });
+      // await client.connect();
+      // const signInData = await fakeRequest(app)
+      //   .post('/auth/signup')
+      //   .send({
+      //     email: 'jon@user.com',
+      //     password: '1234'
+      //   });
       
-      token = signInData.body.token; // eslint-disable-line
+      // token = signInData.body.token; // eslint-disable-line
     }, 10000);
   
     afterAll(done => {
       return client.end(done);
     });
 
-    test('returns animals', async() => {
+    test('returns discs', async() => {
 
       const expectation = [
         {
-          'id': 1,
-          'name': 'bessie',
-          'cool_factor': 3,
-          'owner_id': 1
+          id: 1,
+          disc: 'Aviar',
+          speed: 2,
+          type: 'Putt/Approach',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
         },
         {
-          'id': 2,
-          'name': 'jumpy',
-          'cool_factor': 4,
-          'owner_id': 1
+          id: 2,
+          disc: 'Roc',
+          speed: 4,
+          type: 'Midrange',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, pro, glow, dx'
         },
         {
-          'id': 3,
-          'name': 'spot',
-          'cool_factor': 10,
-          'owner_id': 1
-        }
+          id: 3,
+          disc: 'Essence',
+          speed: 8,
+          type: 'Fairway Driver',
+          brand: 'discmania',
+          stable: false,
+          plastics: 'neo, geo'
+        },
+        {
+          id: 4,
+          disc: 'Beast',
+          speed: 10,
+          type: 'Distance Driver',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, gstar, champion, blizzard, pro, glow, dx'
+        },
       ];
 
       const data = await fakeRequest(app)
-        .get('/animals')
+        .get('/discs')
         .expect('Content-Type', /json/)
         .expect(200);
 
       expect(data.body).toEqual(expectation);
     });
+    
+    test('returns discs/innova', async() => {
+      const expectation = [
+        {
+          id: 1,
+          disc: 'Aviar',
+          speed: 2,
+          type: 'Putt/Approach',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
+        },
+        {
+          id: 2,
+          disc: 'Roc',
+          speed: 4,
+          type: 'Midrange',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, pro, glow, dx'
+        },
+        {
+          id: 4,
+          disc: 'Beast',
+          speed: 10,
+          type: 'Distance Driver',
+          brand: 'innova',
+          stable: true,
+          plastics: 'star, gstar, champion, blizzard, pro, glow, dx'
+        },
+      ];
+    
+      const data = await fakeRequest(app)
+        .get('/discs/innova')
+        .expect('Content-Type', /json/)
+        .expect(200);
+    
+      expect(data.body).toEqual(expectation);
+    });
   });
 });
+
+
+
+
