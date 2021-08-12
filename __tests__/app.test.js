@@ -134,7 +134,24 @@ describe('app routes', () => {
       expect(data.body.disc).toEqual(newDisc.disc);
       expect(data.body.id).toBeGreaterThan(0);
     });
-    test('PUT /discs/:brand');
+    test('PUT /discs/:id updates a disc', async () => {
+      const updatedDisc = {
+        disc: 'AviarX',
+        speed: 2,
+        type: 'putt/approach',
+        brand: 'innova-west',
+        stable: true,
+        plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
+      };
+      const data = await fakeRequest(app)
+        .put('/cartoons/1')
+        .send(updatedDisc)
+        .expect(200)
+        .expect('Content-Type', /json/);
+
+      expect(data.body.disc).toEqual(updatedDisc.disc);
+      expect(data.body.brand).toEqual(updatedDisc.brand);
+    });
   });
 });
 
