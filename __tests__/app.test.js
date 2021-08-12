@@ -13,7 +13,7 @@ describe('app routes', () => {
     beforeAll(async () => {
       execSync('npm run setup-db');
   
-      // await client.connect();
+      await client.connect();
       // const signInData = await fakeRequest(app)
       //   .post('/auth/signup')
       //   .send({
@@ -115,6 +115,26 @@ describe('app routes', () => {
     
       expect(data.body).toEqual(expectation);
     });
+    test('POST /discs creates a new disc', async () =>{
+      const newDisc = {
+        disc: 'Eagle',
+        speed: 7,
+        type: 'fairway driver',
+        brand: 'innova',
+        stable: true,
+        plastics: 'star, champion, dx'
+      };
+
+      const data = await fakeRequest(app)
+        .post('/discs')
+        .send(newDisc)
+        .expect(200)
+        .expect('Content-Type', /json/);
+      
+      expect(data.body.disc).toEqual(newDisc.disc);
+      expect(data.body.id).toBeGreaterThan(0);
+    });
+    test('PUT /discs/:brand');
   });
 });
 
