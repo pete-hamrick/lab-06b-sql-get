@@ -77,7 +77,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
     
-    test('returns discs/innova', async() => {
+    test('returns discs/:id', async() => {
       const expectation = [
         {
           id: 1,
@@ -144,11 +144,10 @@ describe('app routes', () => {
         plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
       };
       const data = await fakeRequest(app)
-        .put('/cartoons/1')
+        .put('/discs/1')
         .send(updatedDisc)
         .expect(200)
         .expect('Content-Type', /json/);
-
       expect(data.body.disc).toEqual(updatedDisc.disc);
       expect(data.body.brand).toEqual(updatedDisc.brand);
     });
