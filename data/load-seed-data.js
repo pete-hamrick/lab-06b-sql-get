@@ -1,7 +1,7 @@
 const client = require('../lib/client');
 // import our seed data:
-const discs = require('./discs.js');
-const manufacturers = require('./manufacturer.js');
+const discsData = require('./discs.js');
+const manufacturerData = require('./manufacturer.js');
 const { getEmoji } = require('../lib/emoji.js');
 
 run();
@@ -12,12 +12,36 @@ async function run() {
     await client.connect();
 
     await Promise.all(
-      discs.map(disc => {
+      manufacturerData.map(maker => {
         return client.query(`
-                    INSERT INTO discs (disc, speed, type, brand, stable, plastics)
-                    VALUES ($1, $2, $3, $4, $5, $6);
+          INSERT INTO manufacturer (name)
+          VALUES ($1)
+          RETURNING *;
+        `, 
+        [maker.name]);
+      })
+    );
+    
+    await Promise.all(
+      discsData.map(disc => {
+        return client.query(`
+                    INSERT INTO discs (
+                      disc, 
+                      speed, 
+                      type, 
+                      manufacturer_id, 
+                      stable, 
+                      plastics)
+                    VALUES ($1, $2, $3, $4, $5, $6)
+                    RETURNING *;
                 `,
-        [disc.disc, disc.speed, disc.type, disc.brand, disc.stable, disc.plastics]);
+        [disc.disc, 
+          disc.speed, 
+          disc.type, 
+          disc.manufacturer_id, 
+          disc.stable, 
+          disc.plastics
+        ]);
       })
     );
     

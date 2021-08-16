@@ -9,7 +9,8 @@ async function run() {
     await client.connect();
     
     await client.query(`
-            DROP TABLE IF EXISTS discs;
+            DROP TABLE IF EXISTS discs
+            DROP TABLE IF EXISTS manufacturers;
         `);
 
     console.log(' drop tables complete', getEmoji(), getEmoji(), getEmoji());

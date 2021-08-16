@@ -12,14 +12,19 @@ async function run() {
 
     // run a query to create tables
     await client.query(`          
-                CREATE TABLE discs (
-                    id SERIAL PRIMARY KEY NOT NULL,
-                    disc VARCHAR(512) NOT NULL,
-                    speed INTEGER NOT NULL,
-                    type VARCHAR(512) NOT NULL,
-                    brand VARCHAR(512) NOT NULL,
-                    stable BOOL NOT NULL,
-                    plastics VARCHAR(512) NOT NULL
+            CREATE TABLE manufacturers (
+              id SERIAL PRIMARY KEY,
+              name VARCHAR(512) NOT NULL
+            );    
+    
+            CREATE TABLE discs (
+              id SERIAL PRIMARY KEY NOT NULL,
+              disc VARCHAR(512) NOT NULL,
+              speed INTEGER NOT NULL,
+              type VARCHAR(512) NOT NULL,
+              manufacturer_id INTEGER NOT NULL REFERENCES manufacturers(id),
+              stable BOOL NOT NULL,
+              plastics VARCHAR(512) NOT NULL
             );
         `);
 
