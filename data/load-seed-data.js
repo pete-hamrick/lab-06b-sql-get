@@ -25,16 +25,16 @@ async function run() {
     await Promise.all(
       discsData.map(disc => {
         return client.query(`
-                    INSERT INTO discs (
-                      disc, 
-                      speed, 
-                      type, 
-                      manufacturer_id, 
-                      stable, 
-                      plastics)
-                    VALUES ($1, $2, $3, $4, $5, $6)
-                    RETURNING *;
-                `,
+          INSERT INTO discs (
+            disc, 
+            speed, 
+            type, 
+            manufacturer_id, 
+            stable, 
+            plastics)
+          VALUES ($1, $2, $3, $4, $5, $6)
+          RETURNING *;
+        `,
         [disc.disc, 
           disc.speed, 
           disc.type, 
