@@ -14,7 +14,7 @@ async function run() {
     await Promise.all(
       manufacturerData.map(maker => {
         return client.query(`
-          INSERT INTO manufacturer (name)
+          INSERT INTO manufacturers (name)
           VALUES ($1)
           RETURNING *;
         `, 
