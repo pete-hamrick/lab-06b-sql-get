@@ -90,31 +90,10 @@ describe('disc routes', () => {
         disc: 'Aviar',
         speed: 2,
         type: 'Putt/Approach',
-        manufacturer: 'Innova',
         stable: true,
-        plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
+        plastics: 'star, gstar, champion, xt, r-pro, glow, dx',
+        manufacturer: 'Innova'
       };
-      // [
-      //   {
-      //     id: 2,
-      //     disc: 'Roc',
-      //     speed: 4,
-      //     type: 'Midrange',
-      //     brand: 'innova',
-      //     stable: true,
-      //     plastics: 'star, pro, glow, dx'
-      //   },
-      //   {
-      //     id: 4,
-      //     disc: 'Beast',
-      //     speed: 10,
-      //     type: 'Distance Driver',
-      //     brand: 'innova',
-      //     stable: true,
-      //     plastics: 'star, gstar, champion, blizzard, pro, glow, dx'
-      //   },
-      // ];
-    
       const data = await fakeRequest(app)
         .get('/discs/1')
         .expect('Content-Type', /json/)
@@ -122,12 +101,13 @@ describe('disc routes', () => {
     
       expect(data.body).toEqual(expectation);
     });
+
     test('POST /discs creates a new disc', async () =>{
       const newDisc = {
         disc: 'Eagle',
         speed: 7,
         type: 'fairway driver',
-        manufacturer: 'innova',
+        manufacturer_id: 1,
         stable: true,
         plastics: 'star, champion, dx'
       };
@@ -141,12 +121,13 @@ describe('disc routes', () => {
       expect(data.body.disc).toEqual(newDisc.disc);
       expect(data.body.id).toBeGreaterThan(0);
     });
+
     test('PUT /discs/:id updates a disc', async () => {
       const updatedDisc = {
         disc: 'AviarX',
         speed: 2,
         type: 'putt/approach',
-        manufacturer: 'innova-west',
+        manufacturer_id: 1,
         stable: true,
         plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
       };
