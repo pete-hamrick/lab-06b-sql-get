@@ -10,6 +10,7 @@ async function run() {
     
     await client.query(`
             DROP TABLE IF EXISTS discs;
+            DROP TABLE IF EXISTS manufacturers CASCADE;
         `);
 
     console.log(' drop tables complete', getEmoji(), getEmoji(), getEmoji());

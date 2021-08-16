@@ -1,38 +1,42 @@
 module.exports = [
   {
-    id: 1,
     disc: 'Aviar',
     speed: 2,
     type: 'Putt/Approach',
-    brand: 'innova',
+    manufacturer_id: 1,
     stable: true,
     plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
   },
   {
-    id: 2,
     disc: 'Roc',
     speed: 4,
     type: 'Midrange',
-    brand: 'innova',
+    manufacturer_id: 1,
     stable: true,
     plastics: 'star, pro, glow, dx'
   },
   {
-    id: 3,
     disc: 'Essence',
     speed: 8,
     type: 'Fairway Driver',
-    brand: 'discmania',
+    manufacturer_id: 3,
     stable: false,
     plastics: 'neo, geo'
   },
   {
-    id: 4,
     disc: 'Beast',
     speed: 10,
     type: 'Distance Driver',
-    brand: 'innova',
+    manufacturer_id: 1,
     stable: true,
     plastics: 'star, gstar, champion, blizzard, pro, glow, dx'
+  },
+  {
+    disc: 'Zone',
+    speed: 4,
+    type: 'Putt/Approach',
+    manufacturer_id: 2,
+    stable: true,
+    plastics: 'titanium, esp, z-flx, jawbreaker, x, pro-d'
   },
 ];
