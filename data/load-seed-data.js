@@ -31,8 +31,7 @@ async function run() {
             type, 
             manufacturer_id, 
             stable, 
-            plastics)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          VALUES ($1, $2, $3, $4, $5)
           RETURNING *;
         `,
         [disc.disc, 
@@ -40,7 +39,6 @@ async function run() {
           disc.type, 
           disc.manufacturer_id, 
           disc.stable, 
-          disc.plastics
         ]);
       })
     );
