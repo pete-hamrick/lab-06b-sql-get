@@ -5,7 +5,6 @@ module.exports = [
     type: 'Putt/Approach',
     manufacturer_id: 1,
     stable: true,
-    plastics: 'star, gstar, champion, xt, r-pro, glow, dx'
   },
   {
     disc: 'Roc',
@@ -13,7 +12,6 @@ module.exports = [
     type: 'Midrange',
     manufacturer_id: 1,
     stable: true,
-    plastics: 'star, pro, glow, dx'
   },
   {
     disc: 'Essence',
@@ -21,7 +19,6 @@ module.exports = [
     type: 'Fairway Driver',
     manufacturer_id: 3,
     stable: false,
-    plastics: 'neo, geo'
   },
   {
     disc: 'Beast',
@@ -29,7 +26,6 @@ module.exports = [
     type: 'Distance Driver',
     manufacturer_id: 1,
     stable: true,
-    plastics: 'star, gstar, champion, blizzard, pro, glow, dx'
   },
   {
     disc: 'Zone',
@@ -37,6 +33,5 @@ module.exports = [
     type: 'Putt/Approach',
     manufacturer_id: 2,
     stable: true,
-    plastics: 'titanium, esp, z-flx, jawbreaker, x, pro-d'
   },
 ];

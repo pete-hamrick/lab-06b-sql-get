@@ -23,8 +23,7 @@ async function run() {
               speed INTEGER NOT NULL,
               type VARCHAR(512) NOT NULL,
               manufacturer_id INTEGER NOT NULL REFERENCES manufacturers(id),
-              stable BOOL NOT NULL,
-              plastics VARCHAR(512) NOT NULL
+              stable BOOL NOT NULL
             );
         `);
 
